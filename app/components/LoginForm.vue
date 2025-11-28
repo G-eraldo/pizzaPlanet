@@ -87,7 +87,7 @@ const onSubmit = async () => {
                 </div>
             </CardContent>
         </Card>
-        <!-- //////////////////////////////////////// -->
+        <!-- //// -->
         <FieldDescription class="px-6 text-center pt-6">
             En cliquant sur "Continuer", vous acceptez nos <NuxtLink to="#">Conditions d'utilisation</NuxtLink> et
             notre <NuxtLink to="#">Politique de confidentialité</NuxtLink>.

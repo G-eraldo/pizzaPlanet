@@ -22,7 +22,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-    <form class="p-6 max-w-md mx-auto space-y-4 container" @submit.prevent="onSubmit">
+    <form class="p-6 max-w-md mx-auto space-y-4 container pt-40" @submit.prevent="onSubmit">
         <h1 class="text-xl font-semibold">Retrouver votre mot de passe</h1>
         <Input v-model="email" type="email" placeholder="Entrez votre email" required
             class="w-full p-2 border rounded" />

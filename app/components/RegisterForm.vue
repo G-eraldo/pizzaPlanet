@@ -66,7 +66,7 @@ import Label from "./ui/label/Label.vue"
                         <p class="text-accent-foreground text-center text-sm">
                             Vous avez déjà un compte ?
                             <Button as-child variant="link" class="px-2">
-                                <NuxtLink to="/se-connecter">Se connecter</NuxtLink>
+                                <NuxtLink to="/se-connecter"> Se connecter</NuxtLink>
                             </Button>
                         </p>
                     </div>

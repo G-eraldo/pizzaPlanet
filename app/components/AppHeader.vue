@@ -22,7 +22,8 @@ const toggle = () => {
 </script>
 
 <template>
-    <header class="bg-slate-900 text-white p-6 flex justify-between items-center font-mono fixed w-full">
+    <header class="fixed w-full z-50 bg-slate-900 text-white p-6 flex justify-between items-center font-mono top-0
+    transition-all duration-300 backdrop-blur-md shadow-md py-3">
         <div class="flex items-center gap-4">
             <NuxtLink to="/">
                 <NuxtImg src="/logo.jpg" alt="logo" width="46" height="46" />
@@ -34,21 +35,22 @@ const toggle = () => {
         </div>
 
         <!-- Desktop Menu -->
-        <nav class="hidden lg:flex items-center gap-4">
-            <NuxtLink to="/">Accueil</NuxtLink>
-            <NuxtLink to="/offres">Nos offres</NuxtLink>
-            <NuxtLink to="/">Contact</NuxtLink>
+        <nav class="hidden lg:flex items-center gap-4  ">
+            <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/">Accueil</NuxtLink>
+            <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/offres">Nos offres</NuxtLink>
+            <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/">Contact</NuxtLink>
             <!-- Si connecté, afficher un bouton avec l'icône du menu -->
             <Button v-if="isConnected" variant="secondary" size="icon" class="relative" @click="toggle">
                 <MenuIcon />
                 <ul v-if="isOpen"
                     class="bg-white absolute right-0 top-10 w-[200px] shadow-lg rounded-md p-2 flex flex-col justify-start items-start">
-                    <li class="my-2 flex gap-4 items-center">
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
                         <UserIcon />
                         <NuxtLink to="/">Mon compte</NuxtLink>
                     </li>
                     <li class="my-2">
-                        <p class="flex gap-4 items-center cursor-pointer" @click="onClick">
+                        <p class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colorscursor-pointer"
+                            @click="onClick">
                             <LogOut /> Se déconnecter
                         </p>
                     </li>

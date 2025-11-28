@@ -30,7 +30,7 @@ const onSubmit = async () => {
 </script>
 
 <template>
-    <form class="p-6 max-w-md mx-auto space-y-4 container" @submit.prevent="onSubmit">
+    <form class="p-6 max-w-md mx-auto space-y-4 container pt-40" @submit.prevent="onSubmit">
         <h1 className="text-xl font-semibold">
             Réinitialiser votre mot de passe
         </h1>
