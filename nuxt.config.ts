@@ -46,4 +46,9 @@ export default defineNuxtConfig({
       cookieName: "strapi_jwt",
     },
   },
+  app: {
+    head: {
+      meta: [{ name: "robots", content: "noindex, nofollow" }],
+    },
+  },
 });
