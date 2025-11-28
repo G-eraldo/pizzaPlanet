@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LogOut, MenuIcon, UserIcon } from 'lucide-vue-next';
+import { BadgePercentIcon, LogOut, MenuIcon, PhoneIcon, UserIcon, XIcon } from 'lucide-vue-next';
 import { ref } from 'vue';
 import Button from './ui/button/Button.vue';
 
@@ -33,7 +33,8 @@ const toggle = () => {
             </h1>
         </div>
 
-        <nav class="gap-4 flex items-center">
+        <!-- Desktop Menu -->
+        <nav class="hidden lg:flex items-center gap-4">
             <NuxtLink to="/">Accueil</NuxtLink>
             <NuxtLink to="/offres">Nos offres</NuxtLink>
             <NuxtLink to="/">Contact</NuxtLink>
@@ -58,6 +59,37 @@ const toggle = () => {
             <!-- Sinon, afficher le bouton de connexion -->
             <Button v-else as-child variant="secondary">
                 <NuxtLink to="/se-connecter">Connexion</NuxtLink>
+            </Button>
+        </nav>
+
+
+        <!-- Mobile menu  -->
+        <nav class="lg:hidden">
+            <Button variant="secondary" size="icon" class="relative" @click="toggle">
+                <div v-if="isOpen">
+                    <XIcon />
+
+                </div>
+                <div v-else>
+                    <MenuIcon />
+                </div>
+                <ul v-if="isOpen"
+                    class="bg-white absolute right-0 top-10 w-[170px] shadow-lg rounded-md p-2 flex flex-col justify-start items-start opacity-90">
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <UserIcon />
+                        <NuxtLink to="/se-connecter">Se connecter</NuxtLink>
+                    </li>
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <BadgePercentIcon />
+                        <NuxtLink to="/offres">Nos offres</NuxtLink>
+                    </li>
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <PhoneIcon />
+                        <NuxtLink to="/">Contact</NuxtLink>
+                    </li>
+
+
+                </ul>
             </Button>
         </nav>
 
