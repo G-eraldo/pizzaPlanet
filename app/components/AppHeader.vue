@@ -22,7 +22,7 @@ const toggle = () => {
 </script>
 
 <template>
-    <header class="bg-slate-900 text-white p-6 flex justify-between items-center font-mono">
+    <header class="bg-slate-900 text-white p-6 flex justify-between items-center font-mono fixed w-full">
         <div class="flex items-center gap-4">
             <NuxtLink to="/">
                 <NuxtImg src="/logo.jpg" alt="logo" width="46" height="46" />

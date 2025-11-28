@@ -5,7 +5,7 @@ import Button from './ui/button/Button.vue';
 
 <template>
     <section>
-        <Card class="max-w-3xl mx-auto mt-12">
+        <Card class="max-w-3xl mx-auto mt-40">
             <div class="flex flex-col lg:flex-row justify-center items-center mx-auto">
                 <div class=" lg:w-[50%] space-y-4 flex flex-col justify-around items-center h-full">
                     <h2 class="text-2xl font-bold">En exclusivité ce mois-ci !</h2>
