@@ -102,6 +102,10 @@ const toggle = () => {
                         <HomeIcon />
                         <NuxtLink to="/">Accueil</NuxtLink>
                     </li>
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <UserIcon />
+                        <NuxtLink to="/">Mon compte</NuxtLink>
+                    </li>
 
                     <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
                         <BadgePercentIcon />
