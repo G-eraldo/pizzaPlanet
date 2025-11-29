@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BadgePercentIcon, LogOut, MenuIcon, PhoneIcon, UserIcon, XIcon } from 'lucide-vue-next';
+import { BadgePercentIcon, HomeIcon, LogOut, MenuIcon, PhoneIcon, UserIcon, XIcon } from 'lucide-vue-next';
 import { ref } from 'vue';
 import Button from './ui/button/Button.vue';
 
@@ -38,7 +38,7 @@ const toggle = () => {
         <nav class="hidden lg:flex items-center gap-4  ">
             <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/">Accueil</NuxtLink>
             <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/offres">Nos offres</NuxtLink>
-            <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/">Contact</NuxtLink>
+            <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/contact">Contact</NuxtLink>
             <!-- Si connecté, afficher un bouton avec l'icône du menu -->
             <Button v-if="isConnected" variant="secondary" size="icon" class="relative" @click="toggle">
                 <MenuIcon />
@@ -75,8 +75,12 @@ const toggle = () => {
                 <div v-else>
                     <MenuIcon />
                 </div>
-                <ul v-if="isOpen"
+                <ul v-if="isOpen && !isConnected"
                     class="bg-white absolute right-0 top-10 w-[170px] shadow-lg rounded-md p-2 flex flex-col justify-start items-start opacity-90">
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <HomeIcon />
+                        <NuxtLink to="/">Accueil</NuxtLink>
+                    </li>
                     <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
                         <UserIcon />
                         <NuxtLink to="/se-connecter">Se connecter</NuxtLink>
@@ -87,11 +91,34 @@ const toggle = () => {
                     </li>
                     <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
                         <PhoneIcon />
-                        <NuxtLink to="/">Contact</NuxtLink>
+                        <NuxtLink to="/contact">Contact</NuxtLink>
                     </li>
 
 
                 </ul>
+                <ul v-if="isOpen && isConnected"
+                    class="bg-white absolute right-0 top-10 w-[170px] shadow-lg rounded-md p-2 flex flex-col justify-start items-start opacity-90">
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <HomeIcon />
+                        <NuxtLink to="/">Accueil</NuxtLink>
+                    </li>
+
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <BadgePercentIcon />
+                        <NuxtLink to="/offres">Nos offres</NuxtLink>
+                    </li>
+                    <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
+                        <PhoneIcon />
+                        <NuxtLink to="/contact">Contact</NuxtLink>
+                    </li>
+                    <li>
+                        <p class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500
+                            transition-colors" @click="onClick">
+                            <LogOut /> Se déconnecter
+                        </p>
+                    </li>
+                </ul>
+
             </Button>
         </nav>
 
