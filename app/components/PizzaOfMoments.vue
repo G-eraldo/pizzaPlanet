@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Button from './ui/button/Button.vue';
 
 </script>
 
@@ -14,9 +13,7 @@ import Button from './ui/button/Button.vue';
                         fondant, de
                         jambon et de
                         champignons.</p>
-                    <Button variant="default" class="">
-                        Commander
-                    </Button>
+
                 </div>
                 <div class="p-4 space-y-4">
                     <NuxtImg
