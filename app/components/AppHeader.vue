@@ -77,9 +77,9 @@ const toggle = () => {
 
         <!-- Mobile menu  -->
         <nav class="lg:hidden">
-            <NuxtLink v-if="cartStore.totalItems > 0" to="/panier">
+            <NuxtLink v-if="cartStore.totalItems > 0" to="/panier" class="relative ">
                 <ShoppingBasket />
-                <span>({{ cartStore.totalItems }}) </span>
+                <span class="absolute bottom-4 left-5 text-xs">{{ cartStore.totalItems }}</span>
             </NuxtLink>
             <Button variant="secondary" size="icon" class="relative" @click="toggle">
                 <div v-if="isOpen">
