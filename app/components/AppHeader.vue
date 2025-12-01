@@ -56,7 +56,7 @@ const toggle = () => {
                     class="bg-white absolute right-0 top-10 w-[200px] shadow-lg rounded-md p-2 flex flex-col justify-start items-start">
                     <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
                         <UserIcon />
-                        <NuxtLink to="/">Mon compte</NuxtLink>
+                        <NuxtLink to="/mon-compte">Mon compte</NuxtLink>
                     </li>
                     <li class="my-2">
                         <p class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colorscursor-pointer"
@@ -118,7 +118,7 @@ const toggle = () => {
                     </li>
                     <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
                         <UserIcon />
-                        <NuxtLink to="/">Mon compte</NuxtLink>
+                        <NuxtLink to="/mon-compte">Mon compte</NuxtLink>
                     </li>
 
                     <li class="my-2 flex gap-4 items-center text-sm font-medium hover:text-amber-500 transition-colors">
