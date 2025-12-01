@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { BadgePercentIcon, HomeIcon, LogOut, MenuIcon, PhoneIcon, UserIcon, XIcon } from 'lucide-vue-next';
+import { BadgePercentIcon, HomeIcon, LogOut, MenuIcon, PhoneIcon, ShoppingBasket, UserIcon, XIcon } from 'lucide-vue-next';
 import { ref } from 'vue';
+import { useCartStore } from '~/stores/cart';
 import Button from './ui/button/Button.vue';
+
+const cartStore = useCartStore()
 
 const { logout } = useStrapiAuth()
 const router = useRouter()
@@ -36,9 +39,16 @@ const toggle = () => {
 
         <!-- Desktop Menu -->
         <nav class="hidden lg:flex items-center gap-4  ">
+
+            <NuxtLink v-if="cartStore.totalItems > 0" to="/panier" class="relative ">
+                <ShoppingBasket />
+                <span class="absolute bottom-4 left-5 text-xs">{{ cartStore.totalItems }}</span>
+            </NuxtLink>
             <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/">Accueil</NuxtLink>
             <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/offres">Nos offres</NuxtLink>
             <NuxtLink class="font-medium hover:text-amber-500 transition-colors" to="/contact">Contact</NuxtLink>
+
+
             <!-- Si connecté, afficher un bouton avec l'icône du menu -->
             <Button v-if="isConnected" variant="secondary" size="icon" class="relative" @click="toggle">
                 <MenuIcon />
@@ -67,6 +77,10 @@ const toggle = () => {
 
         <!-- Mobile menu  -->
         <nav class="lg:hidden">
+            <NuxtLink v-if="cartStore.totalItems > 0" to="/panier">
+                <ShoppingBasket />
+                <span>({{ cartStore.totalItems }}) </span>
+            </NuxtLink>
             <Button variant="secondary" size="icon" class="relative" @click="toggle">
                 <div v-if="isOpen">
                     <XIcon />

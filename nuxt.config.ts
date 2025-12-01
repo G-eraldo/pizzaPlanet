@@ -12,6 +12,8 @@ export default defineNuxtConfig({
     "@nuxtjs/strapi",
     "@nuxt/fonts",
     "@nuxt/icon",
+    "@pinia/nuxt",
+    "pinia-plugin-persistedstate/nuxt",
   ],
   vite: {
     plugins: [tailwindcss()],

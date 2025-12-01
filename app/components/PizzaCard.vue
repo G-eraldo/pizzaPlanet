@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue';
+import { useCartStore } from '~/stores/cart';
 import Button from './ui/button/Button.vue';
 import Card from './ui/card/Card.vue';
 import CardContent from './ui/card/CardContent.vue';
@@ -12,7 +13,6 @@ import SelectContent from './ui/select/SelectContent.vue';
 import SelectItem from './ui/select/SelectItem.vue';
 import SelectTrigger from './ui/select/SelectTrigger.vue';
 import SelectValue from './ui/select/SelectValue.vue';
-
 
 const props = defineProps({
     pizzas: {
@@ -27,7 +27,20 @@ const numbers = ref('1')
 
 const priceTaille = computed(() => taille.value === "L" ? props.pizzas.price + 2 : taille.value === "XL" ? props.pizzas.price + 5 : props.pizzas.price)
 
-const finalPrice = computed(() => pate.value === "Pan" ? priceTaille.value + 2 : pate.value === "Chessy" ? priceTaille.value + 2 : priceTaille)
+const finalPrice = computed(() => pate.value === "Pan" ? priceTaille.value + 2 : pate.value === "Chessy" ? priceTaille.value + 2 : priceTaille.value) // <-- Ajout de .value ici
+
+const cartStore = useCartStore()
+
+const addToCart = () => {
+    cartStore.addItem({
+        pizza: props.pizzas,  // <- ici: 'pizza' (singulier), comme dans le store
+        taille: taille.value,
+        pate: pate.value,
+        quantity: Number(numbers.value),
+        price: finalPrice.value,
+        image: props.pizzas.pictures?.[0]?.formats?.small?.url,
+    })
+}
 
 </script>
 
@@ -49,8 +62,8 @@ const finalPrice = computed(() => pate.value === "Pan" ? priceTaille.value + 2 :
             <div>
                 <p>{{ finalPrice }} euros</p>
             </div>
-            <form class="w-full">
-                <input type="hidden" name="name" value={{pizzas.title}}>
+            <form class="w-full" @submit.prevent="addToCart">
+
                 <div class="flex flex-col">
                     <div class="mb-3">
                         <Select v-model="taille" name="taille">
@@ -92,7 +105,7 @@ const finalPrice = computed(() => pate.value === "Pan" ? priceTaille.value + 2 :
                     </div>
                 </div>
                 <div class="mt-5 flex justify-center">
-                    <Button variant="outline" class="cursor-pointer">
+                    <Button variant="outline" class="cursor-pointer" type="submit">
                         Ajouter au panier
                     </Button>
                 </div>
