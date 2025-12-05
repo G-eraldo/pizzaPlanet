@@ -11,7 +11,7 @@ const cartStore = useCartStore()
 </script>
 
 <template>
-    <Card class="max-w-5xl mx-auto p-4 md:p-6 mt-24 flex flex-col">
+    <div class="max-w-5xl mx-auto p-4 md:p-6 mt-24 flex flex-col mb-12">
         <h1 class="text-3xl font-bold text-center my-8">Ma Commande</h1>
 
 
@@ -62,7 +62,7 @@ const cartStore = useCartStore()
                 <NuxtLink to="/">Retour</NuxtLink>
             </Button>
         </div>
-    </Card>
+    </div>
 </template>
 
 <style scoped></style>
