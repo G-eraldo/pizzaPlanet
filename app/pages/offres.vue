@@ -49,8 +49,7 @@ const offres = [{
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-4">
             <Card v-for="offers in offres" :key="offers.id" class="max-w-5xl mb-12 mx-auto p-4 lg:p-6 lg:mt-16 
                 hover:shadow-amber-500 hover:scale-105 
-                active:shadow-amber-500 active:scale-105 
-                transition-transform duration-300 ease-in-out">>
+                transition-transform duration-300 ease-in-out">
 
                 <CardTitle class="font-mono text-2xl text-center">Menu <span class="text-amber-500">{{
                     offers.titre }}</span>
