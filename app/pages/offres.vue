@@ -40,20 +40,19 @@ const offres = [{
     price: 10,
     url: "https://res.cloudinary.com/dlnbsf2ed/image/upload/v1764957039/Copilot_20251205_185025_gjqzt1.png"
 }]
-
-console.log(offres)
 </script>
 
 
 <template>
     <div>
         <h1 class="text-3xl font-bold text-center my-8 lg:mt-32">Nos offres du moments</h1>
-        <div class="grid grid-cols-1 lg:grid-cols-3">
-            <Card v-for="offers in offres" :key="offers.id"
-                class="max-w-5xl mb-12 mx-10 p-4 lg:p-6 lg:mt-16 hover:shadow-amber-500 hover:scale-105 transition-transform duration-300 ease-in-out">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-x-4">
+            <Card v-for="offers in offres" :key="offers.id" class="max-w-5xl mb-12 mx-auto p-4 lg:p-6 lg:mt-16 
+                hover:shadow-amber-500 hover:scale-105 active:shadow-amber-500 active:scale-105 
+                transition-transform duration-300 ease-in-out">
 
-                <CardTitle class="font-mono text-2xl text-center">Menu <span class="text-amber-500">{{ offers.titre
-                }}</span>
+                <CardTitle class="font-mono text-2xl text-center">Menu <span class="text-amber-500">{{
+                    offers.titre }}</span>
                 </CardTitle>
                 <CardContent class=" flex justify-center">
                     <NuxtImg :src="offers.url" :alt="offers.titre" class="w-48 h-48 object-contain rounded-lg " />
