@@ -47,7 +47,10 @@ const addToCart = () => {
 
 <template>
 
-    <Card class="max-w-5xl mb-12 mx-10 p-4 lg:p-6 lg:mb-24">
+    <Card class="w-full 
+               max-w-none lg:max-w-96 
+               mx-auto 
+               mb-12 p-4 lg:p-6 lg:mb-24">
         <CardHeader id="commander">
             <CardTitle class="font-mono">{{ pizzas.title }}</CardTitle>
             <CardDescription class="h-24">{{ pizzas.description }}</CardDescription>
@@ -56,11 +59,11 @@ const addToCart = () => {
             <NuxtImg :src="pizzas.pictures?.[0]?.formats?.small?.url" :alt="pizzas.title"
                 class="w-full h-48 object-cover rounded-lg" />
         </CardContent>
-        <CardFooter class="flex flex-col items-start gap-y-3">
+        <CardFooter class="flex flex-col lg:items-start gap-y-3">
             <div>
                 <p>{{ finalPrice }} euros</p>
             </div>
-            <form class="w-full" @submit.prevent="addToCart">
+            <form class="w-full flex flex-col items-center lg:items-start" @submit.prevent="addToCart">
 
                 <div class="flex flex-col">
                     <div class="mb-3">
