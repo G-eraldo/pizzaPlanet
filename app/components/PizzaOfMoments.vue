@@ -17,7 +17,7 @@
                 </div>
                 <div class="p-4 space-y-4">
                     <NuxtImg
-                        src="https://res.cloudinary.com/dlnbsf2ed/image/upload/v1764010200/pizzaDeNovembre_qgqzat.jpg"
+                        src="https://res.cloudinary.com/dlnbsf2ed/image/upload/v1764185717/pizza_De_Novembre_38d962ca6c.jpg"
                         alt="La montagnarde" width="400" height="300" class="rounded-lg" />
                 </div>
             </div>

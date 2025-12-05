@@ -48,15 +48,13 @@ const addToCart = () => {
 <template>
 
     <Card class="max-w-5xl mb-12 mx-10 p-4 lg:p-6 lg:mb-24">
-        <CardHeader>
-            <CardTitle>{{ pizzas.title }}</CardTitle>
+        <CardHeader id="commander">
+            <CardTitle class="font-mono">{{ pizzas.title }}</CardTitle>
             <CardDescription class="h-24">{{ pizzas.description }}</CardDescription>
         </CardHeader>
         <CardContent>
             <NuxtImg :src="pizzas.pictures?.[0]?.formats?.small?.url" :alt="pizzas.title"
                 class="w-full h-48 object-cover rounded-lg" />
-
-
         </CardContent>
         <CardFooter class="flex flex-col items-start gap-y-3">
             <div>
