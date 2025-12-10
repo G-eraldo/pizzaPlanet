@@ -17,11 +17,9 @@ definePageMeta({
     <Card class="max-w-2xl mx-auto p-4 md:p-6 mt-32 mb-12">
 
         <CardTitle class="text-xl md:text-2xl font-bold mb-4">
-            Mon compte
+            Bienvenue <span class="font-bold text-amber-500"> {{ user.username }}!</span>
         </CardTitle>
-        <CardDescription class="mb-4 md:mb-6 ">
-            Bienvenue, {{ user.username }}!
-        </CardDescription>
+
         <InfoCompte />
         <CommandeCompte />
 

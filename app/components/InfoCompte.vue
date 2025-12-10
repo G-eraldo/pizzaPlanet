@@ -52,53 +52,62 @@ const SaveInfo = async () => {
 }
 </script>
 
-
 <template>
     <div>
-        <h1>Mes Informations :</h1>
-        <div class="grid grid-row-1 md:grid-row-2 gap-4">
-            <div class="grid w-full items-center gap-2">
-                <Card>
-                    <div class="flex gap-2 items-center">
-                        <div class="flex gap-2 items-center">
-                            <Label class="w-24">Nom : </Label>
-                            <Input v-if="isChanged" v-model="firstName" />
-                            <p v-else>{{ firstName }}</p>
-                        </div>
+        <h1 class="text-xl font-bold mb-3">Mes Informations</h1>
+        <div class="flex justify-center">
 
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <Label>Prénom : </Label>
-                        <Input v-if="isChanged" v-model="name" />
-                        <p v-else>{{ name }}</p>
+            <Card class="w-full max-w-lg p-6 shadow-lg">
+                <div class="space-y-4">
+
+                    <div class="flex items-center">
+                        <Label class="w-32 font-semibold">Nom :</Label>
+                        <Input v-if="isChanged" v-model="name" class="grow" />
+                        <p v-else class="grow">{{ name }}</p>
                     </div>
 
-                    <div class="flex gap-2 items-center">
-                        <Label>Adresse : </Label>
-                        <Input v-model="address" />
+                    <div class="flex items-center">
+                        <Label class="w-32 font-semibold">Prénom :</Label>
+                        <Input v-if="isChanged" v-model="firstName" class="grow" />
+                        <p v-else class="grow">{{ firstName }}</p>
                     </div>
-                    <div class="flex gap-2 items-center">
-                        <Label>Code Postal : </Label>
-                        <Input v-model="zipCode" />
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <Label>Ville : </Label>
-                        <Input v-model="city" />
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <Label>Pays : </Label>
-                        <Input v-model="country" />
-                    </div>
-                    <div class="flex gap-2 justify-center">
-                        <Button v-if="!isChanged" @click="isOnChange">Modifier</Button>
-                        <Button v-else @click="isOnChange">Annuler</Button>
-                        <Button v-if="isChanged" @click="SaveInfo">Enregistrer</Button>
-                    </div>
-                </Card>
 
+                    <hr class="my-4 border-gray-200">
 
-            </div>
+                    <div class="flex items-center">
+                        <Label class="w-32 font-semibold">Adresse :</Label>
+                        <Input v-if="isChanged" v-model="address" class="grow" />
+                        <p v-else class="grow">{{ address }}</p>
+                    </div>
+
+                    <div class="flex items-center">
+                        <Label class="w-32 font-semibold">Code Postal :</Label>
+                        <Input v-if="isChanged" v-model="zipCode" class="grow" />
+                        <p v-else class="grow">{{ zipCode }}</p>
+                    </div>
+
+                    <div class="flex items-center">
+                        <Label class="w-32 font-semibold">Ville :</Label>
+                        <Input v-if="isChanged" v-model="city" class="grow" />
+                        <p v-else class="grow">{{ city }}</p>
+                    </div>
+
+                    <div class="flex items-center">
+                        <Label class="w-32 font-semibold">Pays :</Label>
+                        <Input v-if="isChanged" v-model="country" class="grow" />
+                        <p v-else class="grow">{{ country }}</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-4 justify-center mt-6 pt-4 border-t border-gray-100">
+                    <Button variant="outline" @click="isOnChange">
+                        {{ isChanged ? 'Annuler' : 'Modifier' }}
+                    </Button>
+                    <Button v-if="isChanged" variant="default" @click="SaveInfo">
+                        Enregistrer
+                    </Button>
+                </div>
+            </Card>
         </div>
     </div>
-
 </template>
