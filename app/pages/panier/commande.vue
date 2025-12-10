@@ -194,13 +194,13 @@ const cartStore = useCartStore()
                     </Card>
                 </div>
 
-                <Card class="mt-8 p-6">
-                    <div class="flex justify-between items-center text-xl font-bold mb-4">
+                <Card class="mt-8 p-6]">
+                    <div class="flex justify-around lg:justify-between lg:mx-12 items-center text-xl font-bold mb-4">
                         <span>Total de la commande :</span>
                         <span class="text-3xl text-red-600">{{ cartStore.totalPrice.toFixed(2) }} €</span>
                     </div>
 
-                    <div class="flex justify-end mt-4">
+                    <div class="flex justify-center lg:justify-end lg:mx-12 mt-4">
                         <Button class="text-lg px-8 py-6" :disabled="cartStore.totalPrice <= 0 || isChanged"
                             @click="() => toast.info('Logique de paiement à implémenter !')">
                             Payer et Valider la Commande
