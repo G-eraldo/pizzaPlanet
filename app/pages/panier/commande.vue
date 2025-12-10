@@ -1,4 +1,5 @@
 <script setup>
+import { CircleMinusIcon, CirclePlusIcon, TrashIcon } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 definePageMeta({
@@ -10,7 +11,6 @@ const isChanged = ref(false)
 const isOnChange = () => {
     isChanged.value = !isChanged.value
 }
-
 
 
 const address = ref('')
@@ -32,16 +32,11 @@ watchEffect(() => {
         zipCode.value = user.value.userProfile.adress?.zip_code || ''
         city.value = user.value.userProfile.adress?.city || ''
         country.value = user.value.userProfile.adress?.country || ''
+    } else if (user.value) {
+        isChanged.value = true
     }
 })
 
-const userProfileOk = ref(false)
-
-watchEffect(() => {
-    if (user.value?.userProfile) {
-        userProfileOk.value = true
-    }
-})
 const SaveInfo = async () => {
     try {
         if (!user.value?.userProfile) {
@@ -56,7 +51,6 @@ const SaveInfo = async () => {
                 },
                 users_permissions_user: user.value.id
             })
-            userProfileOk.value = true
             isChanged.value = false
             toast.success('Mise à jour réussie !')
         } else {
@@ -81,66 +75,139 @@ const SaveInfo = async () => {
 
 
 
-// const cartStore = useCartStore()
+const cartStore = useCartStore()
 
 </script>
 
 <template>
-    <div class="mt-32">
-        <h1>Mes Informations :</h1>
-        <div class="flex justify-center">
+    <div class="max-w-7xl mx-auto p-4 md:p-8 mt-24">
+        <h1 class="text-4xl font-extrabold text-center mb-10 text-gray-800">Finalisation de la Commande</h1>
 
-            <Card class="w-full max-w-lg p-6 shadow-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+            <div class="lg:col-span-1">
+                <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-gray-700">Mes Informations :</h2>
+
+                <Card class="p-6 shadow-xl lg:sticky lg:top-24">
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <Label class="w-24 font-semibold">Nom :</Label>
+                            <Input v-if="isChanged" v-model="name" class="grow" placeholder="Votre nom" />
+                            <p v-else class="grow font-medium">{{ name || 'Non renseigné' }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <Label class="w-24 font-semibold">Prénom :</Label>
+                            <Input v-if="isChanged" v-model="firstName" class="grow" placeholder="Votre prénom" />
+                            <p v-else class="grow font-medium">{{ firstName || 'Non renseigné' }}</p>
+                        </div>
+
+                        <hr class="my-4 border-gray-200">
+
+                        <div class="flex items-center">
+                            <Label class="w-24 font-semibold">Adresse :</Label>
+                            <Input v-if="isChanged" v-model="address" class="grow" placeholder="28 upstreet roard" />
+                            <p v-else class="grow font-medium">{{ address || 'Non renseignée' }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <Label class="w-24 font-semibold">Code Postal :</Label>
+                            <Input v-if="isChanged" v-model="zipCode" class="grow" placeholder="80250" />
+                            <p v-else class="grow font-medium">{{ zipCode || 'Non renseigné' }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <Label class="w-24 font-semibold">Ville :</Label>
+                            <Input v-if="isChanged" v-model="city" class="grow" placeholder="throy" />
+                            <p v-else class="grow font-medium">{{ city || 'Non renseignée' }}</p>
+                        </div>
+                        <div class="flex items-center">
+                            <Label class="w-24 font-semibold">Pays :</Label>
+                            <Input v-if="isChanged" v-model="country" class="grow" placeholder="France" />
+                            <p v-else class="grow font-medium">{{ country || 'Non renseigné' }}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4 justify-end mt-6 pt-4 border-t border-gray-100">
+                        <Button variant="outline" @click="isOnChange">
+                            {{ isChanged ? 'Annuler' : 'Modifier' }}
+                        </Button>
+                        <Button v-if="isChanged" variant="default" @click="SaveInfo">
+                            Enregistrer
+                        </Button>
+                    </div>
+                </Card>
+            </div>
+
+            <div class="lg:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 border-b pb-2 text-gray-700">
+                    Votre Commande ({{ cartStore.items.length }} articles) :
+                </h2>
+
                 <div class="space-y-4">
+                    <Card v-for="item in cartStore.items" :key="`${item.id}-${item.taille}-${item.pate}`" class="p-4 flex flex-col sm:flex-row items-start sm:items-center hover:shadow-amber-500 hover:scale-105 
+                transition-transform duration-300 ease-in-out">
 
-                    <div class="flex items-center">
-                        <Label class="w-32 font-semibold">Nom :</Label>
-                        <Input v-if="!userProfileOk || isChanged" v-model="name" class="grow" />
-                        <p v-else class="grow">{{ name }}</p>
-                    </div>
+                        <div class="w-24 h-24 shrink-0 mr-4 mb-3 sm:mb-0">
+                            <NuxtImg :src="item.image" :alt="item.title"
+                                class="w-full h-full object-cover rounded-md" />
+                        </div>
 
-                    <div class="flex items-center">
-                        <Label class="w-32 font-semibold">Prénom :</Label>
-                        <Input v-if="!userProfileOk || isChanged" v-model="firstName" class="grow" />
-                        <p v-else class="grow">{{ firstName }}</p>
-                    </div>
+                        <div class="grow flex flex-col sm:flex-row justify-between w-full sm:w-auto">
 
-                    <hr class="my-4 border-gray-200">
+                            <div class="grow sm:mr-6">
+                                <CardTitle class="text-lg font-bold">{{ item.title }}</CardTitle>
+                                <p class="text-sm text-gray-500 font-medium">
+                                    {{ item.taille }} / {{ item.pate }}
+                                </p>
+                                <p class="text-xs text-gray-400 mt-1">
+                                    ({{ item.unitPrice.toFixed(2) }} €/u)
+                                </p>
+                            </div>
 
-                    <div class="flex items-center">
-                        <Label class="w-32 font-semibold">Adresse :</Label>
-                        <Input v-if="!userProfileOk || isChanged" v-model="address" class="grow" />
-                        <p v-else class="grow">{{ address }}</p>
-                    </div>
+                            <div
+                                class="flex items-center justify-between sm:justify-end sm:space-x-4 pt-3 sm:pt-0 mt-3 sm:mt-0 border-t sm:border-t-0 border-gray-100 w-full sm:w-auto">
 
-                    <div class="flex items-center">
-                        <Label class="w-32 font-semibold">Code Postal :</Label>
-                        <Input v-if="!userProfileOk || isChanged" v-model="zipCode" class="grow" />
-                        <p v-else class="grow">{{ zipCode }}</p>
-                    </div>
+                                <div class="flex items-center space-x-2">
+                                    <Button size="icon" variant="outline" class="w-7 h-7" :disabled="item.quantity <= 1"
+                                        @click="cartStore.decrement(item)">
+                                        <CircleMinusIcon class="w-4 h-4" />
+                                    </Button>
+                                    <span class="font-bold text-base w-4 text-center">{{ item.quantity }}</span>
+                                    <Button size="icon" variant="outline" class="w-7 h-7"
+                                        @click="cartStore.increment(item)">
+                                        <CirclePlusIcon class="w-4 h-4" />
+                                    </Button>
+                                </div>
 
-                    <div class="flex items-center">
-                        <Label class="w-32 font-semibold">Ville :</Label>
-                        <Input v-if="!userProfileOk || isChanged" v-model="city" class="grow" />
-                        <p v-else class="grow">{{ city }}</p>
-                    </div>
+                                <div class="flex items-center space-x-4 ml-6">
+                                    <p class="text-xl font-extrabold text-amber-500 w-20 text-right">
+                                        {{ (item.unitPrice * item.quantity).toFixed(2) }} €
+                                    </p>
 
-                    <div class="flex items-center">
-                        <Label class="w-32 font-semibold">Pays :</Label>
-                        <Input v-if="!userProfileOk || isChanged" v-model="country" class="grow" />
-                        <p v-else class="grow">{{ country }}</p>
-                    </div>
+                                    <Button size="icon" variant="ghost"
+                                        class="text-red-500 hover:text-red-700 w-8 h-8 p-1"
+                                        @click="cartStore.deleteItem(item)">
+                                        <TrashIcon class="w-5 h-5" />
+                                    </Button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </Card>
                 </div>
 
-                <div class="flex gap-4 justify-center mt-6 pt-4 border-t border-gray-100">
-                    <Button v-if="userProfileOk" variant="outline" @click="isOnChange">
-                        {{ isChanged ? 'Annuler' : 'Modifier' }}
-                    </Button>
-                    <Button v-if="!userProfileOk || isChanged" variant="default" @click="SaveInfo">
-                        Enregistrer
-                    </Button>
-                </div>
-            </Card>
+                <Card class="mt-8 p-6 shadow-2xl bg-white border-t-4 ">
+                    <div class="flex justify-between items-center text-xl font-bold mb-4">
+                        <span>Total de la commande :</span>
+                        <span class="text-3xl text-amber-500">{{ cartStore.totalPrice.toFixed(2) }} €</span>
+                    </div>
+
+                    <div class="flex justify-end mt-4">
+                        <Button class="text-lg px-8 py-6" :disabled="cartStore.totalPrice <= 0 || isChanged"
+                            @click="() => toast.info('Logique de paiement à implémenter !')">
+                            Payer et Valider la Commande
+                        </Button>
+                    </div>
+                </Card>
+            </div>
         </div>
     </div>
 </template>

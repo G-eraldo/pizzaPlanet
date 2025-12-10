@@ -16,7 +16,8 @@ const cartStore = useCartStore()
 
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Card v-for="item in cartStore.items" :key="`${item.id}-${item.taille}-${item.pate}`">
+            <Card v-for="item in cartStore.items" :key="`${item.id}-${item.taille}-${item.pate}`" class="hover:shadow-amber-500 hover:scale-105 
+                transition-transform duration-300 ease-in-out">
                 <CardTitle class="ml-6 flex justify-between items-center">{{ item.title }}
                     <Button class="bg-red-500 hover:bg-red-600 cursor-pointer mr-5" @click="
                         cartStore.deleteItem(item)">
