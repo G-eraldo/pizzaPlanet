@@ -22,30 +22,8 @@ definePageMeta({
         <CardDescription class="mb-4 md:mb-6 ">
             Bienvenue, {{ user.username }}!
         </CardDescription>
-        <CardDescription>Mes commandes :</CardDescription>
-
-        <div class="grid grid-row-1 md:grid-row-2 gap-4">
-            <div class="grid w-full items-center gap-2">
-                <Card>
-                    <CardDescription class="ml-4 md:ml-6">
-                        16/05/2025
-                    </CardDescription>
-                    <CardContent>Pizza Pepperoni</CardContent>
-                </Card>
-                <Card>
-                    <CardDescription class="ml-4 md:ml-6">
-                        16/06/2025
-                    </CardDescription>
-                    <CardContent>Pizza 4 fromages</CardContent>
-                </Card>
-                <Card>
-                    <CardDescription class="ml-4 md:ml-6">
-                        16/02/2025
-                    </CardDescription>
-                    <CardContent>Pizza Reine</CardContent>
-                </Card>
-            </div>
-        </div>
+        <InfoCompte />
+        <CommandeCompte />
 
         <CardFooter class="flex justify-center">
             <Button variant="outline" @click="onClick">
