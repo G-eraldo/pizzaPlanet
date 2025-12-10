@@ -51,7 +51,7 @@ const cartStore = useCartStore()
 
         <div class="flex justify-center mt-6">
             <Button v-if="cartStore.totalPrice > 0" variant="outline">
-                <NuxtLink to="/commande">
+                <NuxtLink to="/panier/commande">
                     Commander pour {{ cartStore.totalPrice }} €
                 </NuxtLink>
             </Button>
