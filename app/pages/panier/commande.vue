@@ -194,10 +194,10 @@ const cartStore = useCartStore()
                     </Card>
                 </div>
 
-                <Card class="mt-8 p-6 shadow-2xl bg-white border-t-4 ">
+                <Card class="mt-8 p-6">
                     <div class="flex justify-between items-center text-xl font-bold mb-4">
                         <span>Total de la commande :</span>
-                        <span class="text-3xl text-amber-500">{{ cartStore.totalPrice.toFixed(2) }} €</span>
+                        <span class="text-3xl text-red-600">{{ cartStore.totalPrice.toFixed(2) }} €</span>
                     </div>
 
                     <div class="flex justify-end mt-4">
