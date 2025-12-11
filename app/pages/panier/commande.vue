@@ -142,7 +142,7 @@ const cartStore = useCartStore()
                 </h2>
 
                 <div class="space-y-4">
-                    <Card v-for="item in cartStore.items" :key="`${item.id}-${item.taille}-${item.pate}`" class="p-4 flex flex-col sm:flex-row items-start sm:items-center hover:shadow-amber-500 hover:scale-105 
+                    <Card v-for="item in cartStore.items" :key="`${item.id}-${item.taille}-${item.pate}`" class="p-4 flex flex-row items-start hover:shadow-amber-500 hover:scale-105 
                 transition-transform duration-300 ease-in-out">
 
                         <div class="w-24 h-24 shrink-0 mr-4 mb-3 sm:mb-0">
@@ -150,9 +150,9 @@ const cartStore = useCartStore()
                                 class="w-full h-full object-cover rounded-md" />
                         </div>
 
-                        <div class="grow flex flex-col sm:flex-row justify-between w-full sm:w-auto">
+                        <div class="grow flex flex-col justify-between w-full">
 
-                            <div class="grow sm:mr-6">
+                            <div class="grow">
                                 <CardTitle class="text-lg font-bold">{{ item.title }}</CardTitle>
                                 <p class="text-sm text-gray-500 font-medium">
                                     {{ item.taille }} / {{ item.pate }}
