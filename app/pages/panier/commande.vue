@@ -177,13 +177,14 @@ const cartStore = useCartStore()
                                     </Button>
                                 </div>
 
-                                <div class="flex items-center space-x-4 ml-6">
+                                <div class="flex items-center space-x-4 ml-6 relative">
                                     <p class="text-xl font-extrabold text-amber-500 w-20 text-right">
                                         {{ (item.unitPrice * item.quantity).toFixed(2) }} €
                                     </p>
 
-                                    <Button size="icon" variant="ghost"
-                                        class="text-red-500 hover:text-red-700 w-8 h-8 p-1"
+                                    <Button size="icon" variant="ghost" class="
+                                        absolute -top-28 right-1 lg:static
+                                        text-red-500 hover:text-red-700 lg:w-8 lg:h-8 lg:p-1"
                                         @click="cartStore.deleteItem(item)">
                                         <TrashIcon class="w-5 h-5" />
                                     </Button>
