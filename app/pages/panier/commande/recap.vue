@@ -7,7 +7,9 @@ const city = ref(user.value.userProfile.adress?.city)
 const country = ref(user.value.userProfile.adress?.country)
 const firstName = ref(user.value?.userProfile.firstname)
 const name = ref(user.value?.userProfile.name)
-
+definePageMeta({
+    middleware: 'auth'
+})
 </script>
 
 <template>

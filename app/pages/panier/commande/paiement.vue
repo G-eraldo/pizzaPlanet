@@ -8,7 +8,9 @@ const user = useStrapiUser()
 const { create } = useStrapi()
 const cartStore = useCartStore()
 const router = useRouter()
-
+definePageMeta({
+    middleware: 'auth'
+})
 const stripePromise = loadStripe('pk_test_51RX0QU3kcBQCvQV6CkN4pndIDYDjezNjOsnQieIBb28pCwklUiltxAQvm7RMg4IswdYuSBC5Rsp0YuCYZnrPpOu8005X4Hay99')
 
 const cardNumber = ref(null)
