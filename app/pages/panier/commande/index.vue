@@ -22,6 +22,7 @@ const name = ref('')
 const id = ref('')
 const user = useStrapiUser()
 const { create, update } = useStrapi()
+const cartStore = useCartStore()
 
 watchEffect(() => {
     if (user.value?.userProfile) {
@@ -72,10 +73,6 @@ const SaveInfo = async () => {
         toast.error('Erreur: ' + (e.error?.message || e.message || e))
     }
 }
-
-
-
-const cartStore = useCartStore()
 
 </script>
 
@@ -195,7 +192,7 @@ const cartStore = useCartStore()
                     </Card>
                 </div>
 
-                <Card class="mt-8 p-6]">
+                <Card class="mt-8 p-6">
                     <div
                         class="flex flex-col gap-4 justify-around lg:flex-row lg:justify-between lg:mx-12 items-center text-xl font-bold    ">
                         <span>Total de la commande :</span>
@@ -203,9 +200,10 @@ const cartStore = useCartStore()
                     </div>
 
                     <div class="flex justify-center lg:justify-end lg:mx-12 mt-4">
-                        <Button class="text-lg px-8 py-6" :disabled="cartStore.totalPrice <= 0 || isChanged"
-                            @click="() => toast.info('Logique de paiement à implémenter !')">
-                            Payer et Valider la Commande
+                        <Button class="text-lg px-8 py-6" :disabled="cartStore.totalPrice <= 0 || isChanged">
+                            <RouterLink to="/panier/commande/paiement">
+                                Payer et Valider la Commande
+                            </RouterLink>
                         </Button>
                     </div>
                 </Card>

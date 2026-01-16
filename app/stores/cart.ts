@@ -26,8 +26,18 @@ export const useCartStore = defineStore("cart", {
   getters: {
     totalItems: (state) =>
       state.items.reduce((acc, item) => acc + item.quantity, 0),
+
+    // Prix total en euros avec précision
     totalPrice: (state) =>
-      state.items.reduce((acc, item) => acc + item.totalPrice, 0),
+      Math.round(
+        state.items.reduce((acc, item) => acc + item.totalPrice, 0) * 100
+      ) / 100,
+
+    // Nouveau getter : Prix total en centimes pour Stripe
+    totalPriceInCents: (state) =>
+      Math.round(
+        state.items.reduce((acc, item) => acc + item.totalPrice, 0) * 100
+      ),
   },
   actions: {
     addItem(payload: {
@@ -47,7 +57,9 @@ export const useCartStore = defineStore("cart", {
 
       if (existing) {
         existing.quantity += payload.quantity;
-        existing.totalPrice = existing.quantity * existing.unitPrice;
+        // Arrondir à 2 décimales pour éviter les erreurs de précision
+        existing.totalPrice =
+          Math.round(existing.quantity * existing.unitPrice * 100) / 100;
       } else {
         this.items.push({
           id: payload.pizza.id,
@@ -56,7 +68,7 @@ export const useCartStore = defineStore("cart", {
           pate: payload.pate,
           quantity: payload.quantity,
           unitPrice: payload.price,
-          totalPrice: payload.price * payload.quantity,
+          totalPrice: Math.round(payload.price * payload.quantity * 100) / 100,
           image: payload.image,
         });
       }
@@ -71,7 +83,8 @@ export const useCartStore = defineStore("cart", {
 
       if (existing) {
         existing.quantity--;
-        existing.totalPrice = existing.quantity * existing.unitPrice;
+        existing.totalPrice =
+          Math.round(existing.quantity * existing.unitPrice * 100) / 100;
 
         if (existing.quantity <= 0) {
           const itemIndex = this.items.findIndex((item) => item === existing);
@@ -90,7 +103,8 @@ export const useCartStore = defineStore("cart", {
       );
       if (existing) {
         existing.quantity++;
-        existing.totalPrice = existing.quantity * existing.unitPrice;
+        existing.totalPrice =
+          Math.round(existing.quantity * existing.unitPrice * 100) / 100;
       }
     },
     deleteItem(itemToDelete: CartItem) {
@@ -98,6 +112,9 @@ export const useCartStore = defineStore("cart", {
       if (itemIndex > -1) {
         this.items.splice(itemIndex, 1);
       }
+    },
+    clearCart() {
+      this.items = [];
     },
   },
   persist: true,
