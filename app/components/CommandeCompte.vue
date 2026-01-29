@@ -1,27 +1,40 @@
 <script setup>
 
 
+
 const { find } = useStrapi()
 
-const commande = await find("commandes")
+const commande = await find("commandes", {
+    populate: "*"
+})
+const user = useStrapiUser()
+
+console.log(commande.data)
+
+
+
 
 </script>
 <template>
     <div>
-        <h1 class="text-xl font-bold mb-3">Mes commandes</h1>
-
-        <div v-for="items in commande.data" :key="items.id" class="flex flex-col items-center gap-4">
+        <h1 class="text-xl font-bold">Mes Commandes</h1>
+        <div class="flex justify-center mt-9" v-if="commande.data.length === 0">
+            <Card class="w-full max-w-lg p-6 shadow-lg">
+                <p>Aucune commande</p>
+            </Card>
+        </div>
+        <div v-for="items in commande.data" :key="items.id" class="flex flex-col items-center mt-9">
 
             <Card class="w-full max-w-lg cursor-pointer hover:shadow-md transition-shadow duration-300 p-4">
 
                 <div class="flex justify-between items-center mb-2 border-b pb-2">
                     <p class="text-sm font-semibold text-gray-500">
                         Date de commande :
-                        <span class="text-gray-800">{{ items.createdAt }}</span>
+                        <span class="text-gray-800">{{ new Date(items.createdAt).toLocaleDateString('fr-FR') }}</span>
                     </p>
-                    <span class="text-xl bg-green-100 text-green-800 px-2 py-0.5 rounded-full">{{ items.status }}</span>
+                    <span class="text-xl bg-green-100 text-green-800 px-2 py-0.5 rounded-full">{{ items.status
+                        }}</span>
                 </div>
-
                 <div v-for="content in items.content" :key="content.id" class="text-lg font-medium">
                     {{ content.title }}
                     {{ content.quantity }}
@@ -36,8 +49,8 @@ const commande = await find("commandes")
                         Voir les détails →
                     </Button>
                 </div>
-            </Card>
 
+            </Card>
 
         </div>
     </div>

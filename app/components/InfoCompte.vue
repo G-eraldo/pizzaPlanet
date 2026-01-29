@@ -53,8 +53,8 @@ const SaveInfo = async () => {
 </script>
 
 <template>
-    <div>
-        <h1 class="text-xl font-bold mb-3">Mes Informations</h1>
+    <div class="mb-10">
+        <h1 class="text-xl font-bold mb-8">Mes Informations</h1>
         <div class="flex justify-center">
 
             <Card class="w-full max-w-lg p-6 shadow-lg">

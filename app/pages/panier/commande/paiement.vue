@@ -2,6 +2,7 @@
 
 <script setup>
 import { loadStripe } from '@stripe/stripe-js'
+import { CreditCardIcon } from 'lucide-vue-next'
 import { onBeforeMount, ref } from 'vue'
 import { useRouter } from 'vue-router'
 const user = useStrapiUser()

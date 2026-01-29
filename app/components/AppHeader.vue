@@ -40,7 +40,8 @@ const toggle = () => {
         <!-- Desktop Menu -->
         <nav class="hidden lg:flex items-center gap-4  ">
 
-            <NuxtLink v-if="cartStore.totalItems > 0" to="/panier" class="relative ">
+            <NuxtLink v-if="cartStore.totalItems > 0" to="/panier"
+                class="relative hover:text-amber-500 transition-colors ">
                 <ShoppingBasket />
                 <span class="absolute bottom-4 left-5 text-xs">{{ cartStore.totalItems }}</span>
             </NuxtLink>
